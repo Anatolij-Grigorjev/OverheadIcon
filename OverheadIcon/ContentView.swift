@@ -10,7 +10,10 @@ import RealityKit
 
 struct ContentView : View {
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        VStack {
+            Text("Hello AR World!").bold()
+            ARViewContainer().border(.ultraThickMaterial, width: 5.0)
+        }.padding()
     }
 }
 
