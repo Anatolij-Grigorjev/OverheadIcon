@@ -9,10 +9,18 @@ import SwiftUI
 import RealityKit
 
 struct ContentView : View {
+    @State var drawArView = false
     var body: some View {
         VStack {
             Text("Hello AR World!").bold()
-            ARViewContainer().border(.ultraThickMaterial, width: 5.0)
+            if (!drawArView) {
+                Button("Begin AR Experience") {
+                    drawArView = true;
+                }.padding(.top)
+                    .buttonStyle(.borderedProminent)
+            } else {
+                ARViewContainer().border(.ultraThickMaterial, width: 5.0)
+            }
         }.padding()
     }
 }
