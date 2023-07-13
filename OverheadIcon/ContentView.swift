@@ -10,6 +10,8 @@ import RealityKit
 
 struct ContentView : View {
     @State var drawArView = false
+    @ObservedObject var arViewModel : ARViewModel = ARViewModel()
+    
     var body: some View {
         VStack {
             Text("Hello AR World!").bold()
@@ -19,30 +21,10 @@ struct ContentView : View {
                 }.padding(.top)
                     .buttonStyle(.borderedProminent)
             } else {
-                ARViewContainer().border(.ultraThickMaterial, width: 5.0)
+                ARViewContainer(arViewModel: arViewModel).border(.ultraThinMaterial, width: 5.0)
             }
         }.padding()
     }
-}
-
-struct ARViewContainer: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
-        
-        // Load the "Cone" scene from the "Experience" Reality File
-        let coneAnchor = try! Experience.loadCone()
-        
-        // Add the cone anchor to the scene
-        arView.scene.anchors.append(coneAnchor)
-        
-        return arView
-        
-    }
-    
-    func updateUIView(_ uiView: ARView, context: Context) {}
-    
 }
 
 #if DEBUG
