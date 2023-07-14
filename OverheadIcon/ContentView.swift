@@ -11,19 +11,34 @@ import RealityKit
 struct ContentView : View {
     @State var drawArView = false
     @ObservedObject var arViewModel : ARViewModel = ARViewModel()
+
     
     var body: some View {
-        VStack {
-            Text("Hello AR World!").bold()
-            if (!drawArView) {
-                Button("Begin AR Experience") {
-                    drawArView = true;
-                }.padding(.top)
-                    .buttonStyle(.borderedProminent)
-            } else {
-                ARViewContainer(arViewModel: arViewModel).border(.ultraThinMaterial, width: 5.0)
-            }
-        }.padding()
+        if (!drawArView) {
+            drawSplashScreen()
+        } else {
+            drawARViewScreen()
+        }
+    }
+    
+    fileprivate func drawSplashScreen() -> some View {
+        return VStack {
+            Text("Hello AR World!").bold();
+            Button {
+                drawArView = true;
+            } label: {
+                Label("Start AR", systemImage: "cube.transparent")
+            }.padding(.top)
+                .buttonStyle(.borderedProminent);
+        }
+    }
+    
+    fileprivate func drawARViewScreen() -> some View {
+        return VStack {
+            
+            ARViewContainer(arViewModel: arViewModel)
+                .border(.ultraThinMaterial, width: 5.0)
+        }
     }
 }
 
