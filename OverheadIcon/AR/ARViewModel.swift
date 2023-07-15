@@ -12,6 +12,10 @@ class ARViewModel: ObservableObject {
     @Published private var model: ARModel = ARModel()
     
     var view: ARView {
-        model.arView
+        get { model.arView }
+    }
+    
+    func switchCamera() {
+        model.switchCamera()
     }
 }

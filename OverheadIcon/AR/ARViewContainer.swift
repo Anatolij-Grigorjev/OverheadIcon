@@ -11,19 +11,28 @@ import RealityKit
 
 struct ARViewContainer: UIViewRepresentable {
     var arViewModel: ARViewModel
+    var arView: ARView {
+        
+        get { return arViewModel.view }
+    }
+    
     
     func makeUIView(context: Context) -> ARView {
         
-        let arView: ARView = arViewModel.view
-        
+        return arView
+    }
+    
+    func loadAnchor() {
         // Load the "Cone" scene from the "Experience" Reality File
         let coneAnchor = try! Experience.loadCone()
         
         // Add the cone anchor to the scene
         arView.scene.anchors.append(coneAnchor)
+    }
+    
+    func switchCamera() {
         
-        return arView
-        
+        arViewModel.switchCamera()
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}

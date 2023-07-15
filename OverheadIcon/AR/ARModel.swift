@@ -7,6 +7,7 @@
 
 import Foundation
 import RealityKit
+import ARKit
 
 struct ARModel {
     private(set) var arView: ARView
@@ -14,4 +15,27 @@ struct ARModel {
     init() {
         arView = ARView(frame: .zero)
     }
+    
+    func switchCamera() {
+        guard let currentSesionConfig = arView.session.configuration else {
+            fatalError("!!!Could not fetch session configuration!!!")
+        }
+        
+        let nextConfig = oppositeCameraConfig(currentSesionConfig)
+        
+        arView.session.run(nextConfig)
+    }
+    
+    fileprivate func oppositeCameraConfig(_ currentCameraConfig: ARConfiguration) -> ARConfiguration {
+        switch currentCameraConfig {
+        case is ARWorldTrackingConfiguration:
+            return ARFaceTrackingConfiguration()
+        case is ARFaceTrackingConfiguration:
+            return ARWorldTrackingConfiguration()
+        default:
+            print("!!!Unrecognized config: \(currentCameraConfig)!!!")
+            return ARWorldTrackingConfiguration()
+        }
+    }
+    
 }

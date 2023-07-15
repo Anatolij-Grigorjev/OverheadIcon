@@ -34,9 +34,23 @@ struct ContentView : View {
     }
     
     fileprivate func drawARViewScreen() -> some View {
+        let arViewContainer = ARViewContainer(arViewModel: arViewModel)
         return VStack {
-            
-            ARViewContainer(arViewModel: arViewModel)
+            HStack {
+                Button {
+                    arViewContainer.loadAnchor()
+                } label: {
+                    Label("Load anchor", systemImage: "capsule.portrait")
+                }.padding(.all)
+                    .buttonStyle(.borderedProminent)
+                Button {
+                    arViewContainer.switchCamera()
+                } label: {
+                    Label("Switch Camera", systemImage: "arrow.triangle.2.circlepath.camera.fill")
+                }.padding(.all)
+                    .buttonStyle(.borderedProminent)
+            }
+            arViewContainer
                 .border(.ultraThinMaterial, width: 5.0)
         }
     }
