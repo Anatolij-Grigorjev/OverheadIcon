@@ -28,6 +28,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         // Add the cone anchor to the scene
         arView.scene.anchors.append(coneAnchor)
+        
     }
     
     func switchCamera() {

@@ -9,34 +9,24 @@ import SwiftUI
 import RealityKit
 
 struct ContentView : View {
-    @State var drawArView = false
+    @StateObject var drawARView: ViewHandoverData = ViewHandoverData()
     @ObservedObject var arViewModel : ARViewModel = ARViewModel()
 
     
     var body: some View {
-        if (!drawArView) {
-            drawSplashScreen()
-        } else {
+        if (drawARView.handoverButtonPressed) {
             drawARViewScreen()
+        } else {
+            SplashScreenView(startPressed: drawARView)
         }
     }
     
-    fileprivate func drawSplashScreen() -> some View {
-        return VStack {
-            Text("Hello AR World!").bold();
-            Button {
-                drawArView = true;
-            } label: {
-                Label("Start AR", systemImage: "cube.transparent")
-            }.padding(.top)
-                .buttonStyle(.borderedProminent);
-        }
-    }
+    let SWITCH_CAMERA_ICON_CODE = "arrow.triangle.2.circlepath.camera.fill"
     
     fileprivate func drawARViewScreen() -> some View {
         let arViewContainer = ARViewContainer(arViewModel: arViewModel)
-        return VStack {
-            HStack {
+        return VStack(alignment: .trailing) {
+            HStack(alignment: .center) {
                 Button {
                     arViewContainer.loadAnchor()
                 } label: {
@@ -46,12 +36,14 @@ struct ContentView : View {
                 Button {
                     arViewContainer.switchCamera()
                 } label: {
-                    Label("Switch Camera", systemImage: "arrow.triangle.2.circlepath.camera.fill")
+                    Label("Switch Camera", systemImage: SWITCH_CAMERA_ICON_CODE)
                 }.padding(.all)
                     .buttonStyle(.borderedProminent)
             }
             arViewContainer
                 .border(.ultraThinMaterial, width: 5.0)
+        }.onTapGesture(coordinateSpace: .local) { location in
+                print("tap is at \(location)")
         }
     }
 }
