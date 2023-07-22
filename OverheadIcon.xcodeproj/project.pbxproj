@@ -106,8 +106,8 @@
 		945092562A56AC09003E836D /* OverheadIcon */ = {
 			isa = PBXGroup;
 			children = (
+				94DAE5232A6BCB0800381913 /* SplashScreen */,
 				94EEAFF42A6058DA00DB420F /* AR */,
-				94DAE51F2A6A77EB00381913 /* SplashScreenView.swift */,
 				945092592A56AC09003E836D /* ContentView.swift */,
 				945092572A56AC09003E836D /* AppDelegate.swift */,
 				9450925B2A56AC09003E836D /* Experience.rcproject */,
@@ -141,6 +141,14 @@
 				945092762A56AC0A003E836D /* OverheadIconUITestsLaunchTests.swift */,
 			);
 			path = OverheadIconUITests;
+			sourceTree = "<group>";
+		};
+		94DAE5232A6BCB0800381913 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				94DAE51F2A6A77EB00381913 /* SplashScreenView.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		94EEAFF42A6058DA00DB420F /* AR */ = {
