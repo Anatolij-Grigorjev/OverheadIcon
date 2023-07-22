@@ -32,8 +32,9 @@ struct ARScreenView: View {
             }
             arViewContainer
                 .border(.ultraThinMaterial, width: 5.0)
-        }.onTapGesture(coordinateSpace: .local) { location in
-                print("tap is at \(location)")
+                .onTapGesture(coordinateSpace: .local) { location in
+                    print("tap is at \(location)")
+                }
         }
     }
 }
