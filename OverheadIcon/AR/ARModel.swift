@@ -18,7 +18,7 @@ struct ARModel {
     
     func switchCamera() {
         guard let currentSesionConfig = arView.session.configuration else {
-            fatalError("!!!Could not fetch session configuration!!!")
+            fatalError("Could not fetch session configuration! Running in emulator?")
         }
         
         let nextConfig = oppositeCameraConfig(currentSesionConfig)
