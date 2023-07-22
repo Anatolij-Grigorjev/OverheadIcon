@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 struct ARScreenView: View {
-    @ObservedObject var arViewModel : ARViewModel = ARViewModel()
+    var arModel : ARModel = ARModel()
     
     let SWITCH_CAMERA_ICON_CODE = "arrow.triangle.2.circlepath.camera.fill"
     
     var body: some View {
-        let arViewContainer = ARViewContainer(arViewModel: arViewModel)
+        let arViewContainer = ARViewContainer(arModel: arModel)
         return VStack(alignment: .trailing) {
             HStack(alignment: .center) {
                 Button {

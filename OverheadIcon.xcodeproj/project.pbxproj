@@ -19,7 +19,6 @@
 		94DAE5222A6A7E8600381913 /* ViewHandoverData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAE5212A6A7E8600381913 /* ViewHandoverData.swift */; };
 		94DAE5252A6BCB6700381913 /* ARScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DAE5242A6BCB6700381913 /* ARScreenView.swift */; };
 		94EEAFF62A6058F400DB420F /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EEAFF52A6058F400DB420F /* ARModel.swift */; };
-		94EEAFF82A60594C00DB420F /* ARViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EEAFF72A60594C00DB420F /* ARViewModel.swift */; };
 		94EEAFFA2A607DA500DB420F /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EEAFF92A607DA500DB420F /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +55,6 @@
 		94DAE5212A6A7E8600381913 /* ViewHandoverData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHandoverData.swift; sourceTree = "<group>"; };
 		94DAE5242A6BCB6700381913 /* ARScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARScreenView.swift; sourceTree = "<group>"; };
 		94EEAFF52A6058F400DB420F /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
-		94EEAFF72A60594C00DB420F /* ARViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewModel.swift; sourceTree = "<group>"; };
 		94EEAFF92A607DA500DB420F /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				94EEAFF52A6058F400DB420F /* ARModel.swift */,
-				94EEAFF72A60594C00DB420F /* ARViewModel.swift */,
 				94EEAFF92A607DA500DB420F /* ARViewContainer.swift */,
 				94DAE5242A6BCB6700381913 /* ARScreenView.swift */,
 			);
@@ -295,7 +292,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DAE5202A6A77EB00381913 /* SplashScreenView.swift in Sources */,
-				94EEAFF82A60594C00DB420F /* ARViewModel.swift in Sources */,
 				94EEAFF62A6058F400DB420F /* ARModel.swift in Sources */,
 				9450925A2A56AC09003E836D /* ContentView.swift in Sources */,
 				94DAE5252A6BCB6700381913 /* ARScreenView.swift in Sources */,

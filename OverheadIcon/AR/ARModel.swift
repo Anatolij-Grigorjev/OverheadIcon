@@ -16,6 +16,14 @@ struct ARModel {
         arView = ARView(frame: .zero)
     }
     
+    func asView() -> ARView {
+        return arView
+    }
+    
+    func addAnchor(_ anchor: HasAnchoring) {
+        arView.scene.addAnchor(anchor)
+    }
+    
     func switchCamera() {
         guard let currentSesionConfig = arView.session.configuration else {
             fatalError("Could not fetch session configuration! Running in emulator?")

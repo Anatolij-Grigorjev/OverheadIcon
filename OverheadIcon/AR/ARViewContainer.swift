@@ -10,16 +10,11 @@ import SwiftUI
 import RealityKit
 
 struct ARViewContainer: UIViewRepresentable {
-    var arViewModel: ARViewModel
-    var arView: ARView {
-        
-        get { return arViewModel.view }
-    }
-    
+    var arModel: ARModel
     
     func makeUIView(context: Context) -> ARView {
         
-        return arView
+        return arModel.asView()
     }
     
     func loadAnchor() {
@@ -27,13 +22,12 @@ struct ARViewContainer: UIViewRepresentable {
         let coneAnchor = try! Experience.loadCone()
         
         // Add the cone anchor to the scene
-        arView.scene.addAnchor(coneAnchor)
-        
+        arModel.addAnchor(coneAnchor)
     }
     
     func switchCamera() {
         
-        arViewModel.switchCamera()
+        arModel.switchCamera()
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
