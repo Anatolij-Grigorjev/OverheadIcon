@@ -27,7 +27,7 @@ struct ARViewContainer: UIViewRepresentable {
         let coneAnchor = try! Experience.loadCone()
         
         // Add the cone anchor to the scene
-        arView.scene.anchors.append(coneAnchor)
+        arView.scene.addAnchor(coneAnchor)
         
     }
     
