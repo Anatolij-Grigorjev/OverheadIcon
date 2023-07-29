@@ -20,8 +20,25 @@ struct ARModel {
         return arView
     }
     
-    func addAnchor(_ anchor: HasAnchoring) {
-        arView.scene.addAnchor(anchor)
+    func addAnchored(_ anchoredEntity: HasAnchoring) {
+        arView.scene.addAnchor(anchoredEntity)
+    }
+    
+    func addAnchored(atAnchor anchor: HasAnchoring, entity: HasAnchoring) {
+        arView.scene.anchors.first(where: { anchor.id == $0.id })?.addChild(entity)
+    }
+    
+    func printAnchors() {
+        let anchors = arView.scene.anchors
+        print("Num anchors: \(anchors.count)")
+        print("Anchors: \(anchors.map { dump($0) })")
+    }
+    
+    func findAnchor(atLocation location: CGPoint) -> HasAnchoring? {
+        let locationTests = arView.hitTest(location, types: .existingPlane)
+        let foundAnchor = locationTests.first(where: { $0.anchor != nil })?.anchor
+        
+        return foundAnchor != nil ? AnchorEntity(anchor: foundAnchor!) : nil
     }
     
     func switchCamera() {
@@ -32,6 +49,7 @@ struct ARModel {
         let nextConfig = oppositeCameraConfig(currentSesionConfig)
         
         arView.session.run(nextConfig)
+        clearKnownAnchors()
     }
     
     fileprivate func oppositeCameraConfig(_ currentCameraConfig: ARConfiguration) -> ARConfiguration {
@@ -44,6 +62,10 @@ struct ARModel {
             print("!!!Unrecognized config: \(currentCameraConfig)!!!")
             return ARWorldTrackingConfiguration()
         }
+    }
+    
+    fileprivate func clearKnownAnchors() {
+        arView.scene.anchors.removeAll(keepCapacity: true)
     }
     
 }

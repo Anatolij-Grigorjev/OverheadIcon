@@ -18,9 +18,9 @@ struct ARScreenView: View {
         return VStack(alignment: .trailing) {
             HStack(alignment: .center) {
                 Button {
-                    arViewContainer.loadAnchor()
+                    arViewContainer.printAnchors()
                 } label: {
-                    Label("Load anchor", systemImage: "capsule.portrait")
+                    Label("Check anchors", systemImage: "capsule.portrait")
                 }.padding(.all)
                     .buttonStyle(.borderedProminent)
                 Button {
@@ -33,7 +33,7 @@ struct ARScreenView: View {
             arViewContainer
                 .border(.ultraThinMaterial, width: 5.0)
                 .onTapGesture(coordinateSpace: .local) { location in
-                    print("tap is at \(location)")
+                    arViewContainer.loadAnchor(atLocation: location)
                 }
         }
     }

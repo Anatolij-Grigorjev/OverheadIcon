@@ -17,12 +17,21 @@ struct ARViewContainer: UIViewRepresentable {
         return arModel.asView()
     }
     
-    func loadAnchor() {
-        // Load the "Cone" scene from the "Experience" Reality File
-        let coneAnchor = try! Experience.loadCone()
+    func loadAnchor(atLocation location: CGPoint? = nil) {
         
-        // Add the cone anchor to the scene
-        arModel.addAnchor(coneAnchor)
+        guard location != nil, let tappedAnchor = arModel.findAnchor(atLocation: location!) else {
+            print("No anchors found active at tap location \(String(describing: location))")
+            return
+        }
+        
+        // Load the "Cone" scene from the "Experience" Reality File
+        let floatingConeEntity = try! Experience.loadCone()
+        
+        arModel.addAnchored(atAnchor: tappedAnchor, entity: floatingConeEntity)
+    }
+    
+    func printAnchors() {
+        arModel.printAnchors()
     }
     
     func switchCamera() {
