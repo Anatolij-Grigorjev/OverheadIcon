@@ -30,11 +30,19 @@ struct ARScreenView: View {
                 }.padding(.all)
                     .buttonStyle(.borderedProminent)
             }
-            arViewContainer
-                .border(.ultraThinMaterial, width: 5.0)
-                .onTapGesture(coordinateSpace: .local) { location in
-                    arViewContainer.loadAnchor(atLocation: location)
-                }
+            ZStack {
+                arViewContainer
+                    .border(.ultraThinMaterial, width: 5.0)
+                    .onTapGesture(coordinateSpace: .local) { location in
+                
+                        arViewContainer.loadAnchor(atLocation: location)
+                    }
+//                Circle()
+//                    .fill()
+//                    .frame(width: 50, height: 50)
+//                    .position(circlePoints[0])
+            }
+            
         }
     }
 }

@@ -35,10 +35,11 @@ struct ARModel {
     }
     
     func findAnchor(atLocation location: CGPoint) -> HasAnchoring? {
-        let locationTests = arView.hitTest(location, types: .existingPlane)
-        let foundAnchor = locationTests.first(where: { $0.anchor != nil })?.anchor
-        
-        return foundAnchor != nil ? AnchorEntity(anchor: foundAnchor!) : nil
+        let locationTests = arView.hitTest(location)
+        print("Hits at location: \(locationTests.count)")
+        let foundAnchor = locationTests.first(where: { $0.entity is AnchorEntity })
+    
+        return foundAnchor?.entity as? AnchorEntity
     }
     
     func switchCamera() {
@@ -48,8 +49,7 @@ struct ARModel {
         
         let nextConfig = oppositeCameraConfig(currentSesionConfig)
         
-        arView.session.run(nextConfig)
-        clearKnownAnchors()
+        arView.session.run(nextConfig, options: [.resetTracking, .removeExistingAnchors])
     }
     
     fileprivate func oppositeCameraConfig(_ currentCameraConfig: ARConfiguration) -> ARConfiguration {
@@ -63,9 +63,4 @@ struct ARModel {
             return ARWorldTrackingConfiguration()
         }
     }
-    
-    fileprivate func clearKnownAnchors() {
-        arView.scene.anchors.removeAll(keepCapacity: true)
-    }
-    
 }
