@@ -11,6 +11,7 @@ import ARKit
 
 struct ARModel {
     private(set) var arView: ARView
+    var tapLocation: CGPoint = .zero
     
     init() {
         arView = ARView(frame: .zero)

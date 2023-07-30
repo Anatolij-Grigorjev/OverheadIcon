@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ARScreenView: View {
     var arModel : ARModel = ARModel()
+    @State var tapLocation: CGPoint = .zero
     
     let SWITCH_CAMERA_ICON_CODE = "arrow.triangle.2.circlepath.camera.fill"
     
@@ -34,13 +35,13 @@ struct ARScreenView: View {
                 arViewContainer
                     .border(.ultraThinMaterial, width: 5.0)
                     .onTapGesture(coordinateSpace: .local) { location in
-                
+                        tapLocation = location
                         arViewContainer.loadAnchor(atLocation: location)
                     }
-//                Circle()
-//                    .fill()
-//                    .frame(width: 50, height: 50)
-//                    .position(circlePoints[0])
+                Circle()
+                    .fill(.red)
+                    .frame(width: 50, height: 50)
+                    .position(tapLocation)
             }
             
         }
